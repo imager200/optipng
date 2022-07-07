@@ -23,7 +23,7 @@ WARNMORE = -Wwrite-strings -Wpointer-arith -Wshadow \
 	-Wmissing-declarations -Wtraditional -Wcast-align \
 	-Wstrict-prototypes -Wmissing-prototypes # -Wconversion
 CPPFLAGS = -I$(ZLIBINC) # -DPNG_DEBUG=5
-CFLAGS = -O2 -Wall -Wextra
+CFLAGS = -O2 -fpic -Wall -Wextra
 LDFLAGS =
 LIBS = -lz -lm
 

@@ -3,7 +3,7 @@
 .SUFFIXES: .c .o .a
 
 CC = gcc
-CFLAGS = -O2 -Wall -Wextra
+CFLAGS = -O2 -fpic -Wall -Wextra
 CPP = $(CC) -E
 CPPFLAGS =
 LD = $(CC)

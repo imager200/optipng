@@ -9,7 +9,7 @@ mandir = $(prefix)/man
 man1dir = $(mandir)/man1
 
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -O2 -fpic -Wextra
 CPP = $(CC) -E
 CPPFLAGS =
 LD = $(CC)
@@ -100,7 +100,7 @@ optipng$(EXEEXT): $(OPTIPNG_OBJS) $(OPTIPNG_DEPLIBS)
 	$(LD) $(LDFLAGS) -o $@ $(OPTIPNG_OBJS) $(OPTIPNG_DEPLIBS) $(ALL_LIBS)
 
 .c.o:
-	$(CC) -c -ggdb $(CPPFLAGS) $(CFLAGS) $(OPTIPNG_DEPINCLUDES) -o $@ $<
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $(OPTIPNG_DEPINCLUDES) -o $@ $<
 
 optipng.o: optipng.c optipng.h bitset.h proginfo.h $(OPTIPNG_DEPLIBS)
 optim.o: optim.c optipng.h bitset.h ioutil.h ratio.h $(OPTIPNG_DEPLIBS)

@@ -3,7 +3,7 @@
 .SUFFIXES: .c .o .a
 
 CC = gcc
-CFLAGS = -O2 -Wall -Wextra
+CFLAGS = -O2 -fpic -Wall -Wextra
 CPP = $(CC) -E
 CPPFLAGS =
 LD = $(CC)
@@ -20,6 +20,7 @@ PNMDIR = ../pnmio
 TIFFDIR = ../minitiff
 
 PNGXTERN_LIB = libpngxtern.a
+PNGXTERN_SHARED_LIB = libpngxtern.so
 
 PNGXREAD_OBJS = pngxread.o pngxrbmp.o pngxrgif.o pngxrjpg.o pngxrpnm.o pngxrtif.o
 PNGXUTIL_OBJS = pngxio.o pngxmem.o pngxset.o
@@ -36,7 +37,7 @@ PNGXTERN_DEPINCLUDES = \
   -I$(PNMDIR) \
   -I$(TIFFDIR)
 
-all: $(PNGXTERN_LIB)
+all: $(PNGXTERN_LIB) $(PNGXTERN_SHARED_LIB)
 
 test:
 
@@ -48,6 +49,9 @@ check: test
 $(PNGXTERN_LIB): $(PNGXTERN_OBJS)
 	$(AR) $(ARFLAGS) $@ $(PNGXTERN_OBJS)
 	$(RANLIB) $@
+
+$(PNGXTERN_SHARED_LIB): 
+	$(CC) -shared -o $(PNGXTERN_SHARED_LIB) $(CPPFLAGS) $(CFLAGS) $(PNGXTERN_OBJS)
 
 pngxio.o: pngxio.c pngxutil.h
 pngxmem.o: pngxmem.c pngxutil.h
