@@ -9,11 +9,11 @@ mandir = $(prefix)/man
 man1dir = $(mandir)/man1
 
 CC = gcc
-CFLAGS = -Wall -O2 -fpic -Wextra
+CFLAGS = -O2 -fpic -Wall -Wextra
 CPP = $(CC) -E
 CPPFLAGS =
 LD = $(CC)
-LDFLAGS = -s 
+LDFLAGS = -s
 MKDIR_P = mkdir -p
 CP_FP = cp -f -p
 RM_F = rm -f
